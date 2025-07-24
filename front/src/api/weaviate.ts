@@ -21,6 +21,6 @@ export const deleteObject = (uuid: string) => axiosInstance.delete(`/objects/${u
 export const createObject = (data: any) => axiosInstance.post(`/objects`, data)
 
 // 删除整个类
-export const deleteClass = (className: string) => axiosInstance.delete(`/api/classes/${className}`)
+export const deleteClass = (className: string) => axiosInstance.delete(`/classes/${className}`)
 
 

@@ -1,5 +1,5 @@
 <template>
-  <el-button type="primary" @click="getClasses">刷新列表</el-button>
+  <el-button type="primary" @click="refreshClasses">刷新列表</el-button>
   <el-divider></el-divider>
   <el-card>
     <el-menu
@@ -27,10 +27,20 @@ const props = defineProps<{ selected: string }>()
 
 const classes = ref<any[]>([])
 
-onMounted(async () => {
-  const res = await getClasses()
-  classes.value = res.data.classes || []
-})
+const fetchClasses = async () => {
+  try {
+    const res = await getClasses()
+    classes.value = res.data.classes || []
+  } catch (error) {
+    console.error('Failed to fetch classes:', error)
+  }
+}
+
+onMounted(fetchClasses)
+
+const refreshClasses = () => {
+  fetchClasses()
+}
 </script>
 
 <style scoped>
